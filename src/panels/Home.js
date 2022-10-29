@@ -18,12 +18,18 @@ const Home = ({ id, go, fetchedUser }) => (
 
 		<Group header={<Header mode="secondary">Выбирите действие</Header>}>
 		<Div>
-				<Button stretched size="l" mode="secondary" onClick={go} data-to="search">
-					Потерялся питомец?
+				<Button stretched size="l" mode="secondary" onClick={go} data-to="searchpet">
+					Потерялся питомец4
 				</Button>
 				<Button stretched size="l" mode="secondary" onClick={go} data-to="nayden">
-					Найден питомец?
+					Найден питомец0?
 				</Button>
+				<Input stretched size="l" mode="secondary" >
+					
+				</Input>
+				<Input stretched size="l" mode="secondary" >
+					
+				</Input>
 			</Div>
 			<Div>
 				<Button stretched size="l" mode="secondary" onClick={go} data-to="persik">

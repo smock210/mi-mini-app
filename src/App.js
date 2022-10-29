@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
-import { View, ScreenSpinner, AdaptivityProvider, AppRoot, ConfigProvider, SplitLayout, SplitCol } from '@vkontakte/vkui';
+import { View, ScreenSpinner, AdaptivityProvider, AppRoot, ConfigProvider, SplitLayout, SplitCol, Search } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
 import Persik from './panels/Persik';
+import Nayden from './panels/nayden';
+import SearchPet from './panels/SearchPet';
 
 const App = () => {
 	const [scheme, setScheme] = useState('bright_light')
@@ -40,6 +42,8 @@ const App = () => {
 							<View activePanel={activePanel}>
 								<Home id='home' fetchedUser={fetchedUser} go={go} />
 								<Persik id='persik' go={go} />
+								<SearchPet id='searchpet' go={go} />
+								<Nayden id='nayden' go={go} />
 							</View>
 						</SplitCol>
 					</SplitLayout>
