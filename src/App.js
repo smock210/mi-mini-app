@@ -5,7 +5,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
 import Persik from './panels/Persik';
-import Nayden from './panels/nayden';
+import Nayden from './panels/Nayden';
 import SearchPet from './panels/SearchPet';
 
 const App = () => {

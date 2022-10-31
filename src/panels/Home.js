@@ -6,7 +6,7 @@ import { Panel, PanelHeader, Header, Button, Group, Cell, Div, Avatar } from '@v
 const Home = ({ id, go, fetchedUser }) => (
 	<Panel id={id}>
 		<PanelHeader>Регистрация обращения</PanelHeader>
-		{fetchedUser &&
+		{/*fetchedUser &&
 		<Group header={<Header mode="secondary">User Data Fetched with VK Bridge</Header>}>
 			<Cell
 				before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200}/> : null}
@@ -14,7 +14,7 @@ const Home = ({ id, go, fetchedUser }) => (
 			>
 				{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
 			</Cell>
-		</Group>}
+</Group>*/}
 
 		<Group header={<Header mode="secondary">Выбирите действие</Header>}>
 		<Div>
@@ -24,12 +24,7 @@ const Home = ({ id, go, fetchedUser }) => (
 				<Button stretched size="l" mode="secondary" onClick={go} data-to="nayden">
 					Найден питомец0?
 				</Button>
-				<Input stretched size="l" mode="secondary" >
-					
-				</Input>
-				<Input stretched size="l" mode="secondary" >
-					
-				</Input>
+				
 			</Div>
 			<Div>
 				<Button stretched size="l" mode="secondary" onClick={go} data-to="persik">
