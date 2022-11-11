@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
+import {Group, Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
 import SearchPetForm from './SearchPetForm';
+import Calendar from './Calendar';
+
 
 
 const SearchPet = props => (
@@ -11,10 +13,14 @@ const SearchPet = props => (
 			left={<PanelHeaderBack onClick={props.go} data-to="home"/>}
 		>
 			Сообщить о пропаже
-			<SearchPetForm/>
-		</PanelHeader>		
+			
+		</PanelHeader>	
+		
+		<SearchPetForm/>	
 	</Panel>
 );
+			
+		
 
 SearchPet.propTypes = {
 	id: PropTypes.string.isRequired,

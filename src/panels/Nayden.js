@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
+import NaydenPetForm from './NaydenPetForm';
 
 
 const Nayden = props => (
@@ -11,7 +12,7 @@ const Nayden = props => (
 		>
 			Заявить о найденом питомце
 		</PanelHeader>
-		
+		<NaydenPetForm/>
 	</Panel>
 );
 
