@@ -17,20 +17,19 @@ function SearchPetForm (){
     const [disabledButtonMethod, setDisabledButtonMethod] = useState(false)
     const [textButtonMethod, setTextButtonMethod] = useState(true)
     const [param, setParam] = useState(
-        [
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            ''
-        ])
+        [ 
+		{},
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		''])
 
     useEffect(() => {
         setParam([
-            '',
+			{},
             '',
             '',
             '',
@@ -38,46 +37,27 @@ function SearchPetForm (){
             '',
             '',
             ''
-        ])
+		])
     }, [])
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms))
     }
 
-    async function onChange(e, index) {
-        const { value } = e.currentTarget;
-        if (value !== '') {
-            setSection(value)
-        }
-        else {
-            setSection(null)
-        }
-
+    async function onChange(index) {
         setUseMethod(false)
         setTextButtonMethod(true)
         setDisabledButtonMethod(false)
-        setParam([
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            ''
-        ])
 
-        try {          
-                let arr = param
-                arr[index] = value
-                setParam(arr)   
+        let arr = param
+
+        if (arr[index.name] === '') {
+            arr[index.name] = index.value
+        } else {
+            arr[index.name] = ""
         }
-        catch(err) {
-            console.log(err)
-            setSection(null)
-            setUseMethod(false)
-        }
+
+        setParam(arr)
 
     }
 
@@ -101,14 +81,37 @@ function SearchPetForm (){
         setDisabledButtonMethod(false)
 
         let arr = param
+		console.log(param.includes(index.currentTarget.name))
+		
 
-        if (arr[index] === '' || arr[index] === false) {
-            arr[index] = true
+        if (arr[index.currentTarget.name] === '' || arr[index.currentTarget.name] === true) {
+            arr[index.currentTarget.name] = false
+			//document.getElementById('response').appendChild(document.createTextNode(arr[index.currentTarget.name]) )
         } else {
-            arr[index] = false
+            arr[index.currentTarget.name] = true
+			//document.getElementById('response').appendChild(document.createTextNode(arr[index.currentTarget.name]))
         }
 
         setParam(arr)
+		//document.getElementById('response').appendChild(document.createTextNode(param.length))
+		var io = 1
+		arr.unshift()
+		/*arr.forEach((el) => {
+			console.log({el})
+			console.log(io)
+			io++
+		})*/
+		arr.map(el => {
+			// eslint-disable-next-line
+			//if (el === '') return
+			document.getElementById('response').appendChild(document.createTextNode(arr[el]))
+			//params1[`${params[index].param}`] = el
+			
+			//document.getElementById('response').appendChild(document.createTextNode("el"))
+		})
+		console.log(arr)
+
+		
     }
 
 	
@@ -120,7 +123,7 @@ try{
 	param.map((el, index) => {
 		// eslint-disable-next-line
 		if (params.length === index || el === '') return
-		if (arams[index].type === 'integer') {
+		if (params[index].type === 'integer') {
 			params1[`${params[index].param}`] = Number(el)
 		}
 		else {
@@ -140,12 +143,7 @@ try{
 
 	}
 	
-	const [disabled, setDisabled] = useState(false);
-	const [disabled1, setDisabled1] = useState(false);
-	const [disabled2, setDisabled2] = useState(false);
-	const [disabled3, setDisabled3] = useState(false);
-	const [disabled5, setDisabled5] = useState(false);
-	const [disabled4, setDisabled4] = useState(false);
+	
 	return(
 		<div>
 
@@ -158,7 +156,7 @@ try{
 	<Input
                type="date"
 			   defaultValue=""
-			   onChange={(e) => onChangeInputs(e, index)}
+			   onChange={(e) => onChange(e)}
                placeholder="Enter your name"
                size={60}
             />
@@ -198,8 +196,7 @@ try{
 		<Checkbox
 		name='chern'
 		value={'черный'}
-        checked={disabled}
-        onChange={(e) => setDisabled(e.target.checked)}
+        onChange={(e) => actionCheckbox(e)}
       >
         черный
       </Checkbox>
@@ -207,40 +204,36 @@ try{
       <Checkbox
 	  name='beliy'
 	  value={'белый'}
-        checked={disabled1}
-        onChange={(e) => setDisabled1(e.target.checked)}
+	  onChange={(e) => actionCheckbox(e)}
       >
         белый
       </Checkbox>
 	  <Checkbox
 	  name='rihiy'
 	  value={'рыжий'}
-        checked={disabled2}
-        onChange={(e) => setDisabled2(e.target.checked)}
+	  onChange={(e) => actionCheckbox(e)}
       >
         рыжий
       </Checkbox>
 	  <Checkbox
 	  name='seriy'
 	  value={'бежсерыйевый'}
-        checked={disabled3}
-        onChange={(e) => setDisabled3(e.target.checked)}
+	  onChange={(e) => actionCheckbox(e)}
       >
         серый
       </Checkbox>
 	  <Checkbox
 	  name='begeviy'
 	  value={'бежевый'}
-        checked={disabled4}
-        onChange={(e) => setDisabled4(e.target.checked)}
+        //checked={disabled4}
+        onChange={(e) => actionCheckbox(e)}
       >
         бежевый
       </Checkbox>
 	  <Checkbox
 	  name='korih'
 	  value={'коричневый'}
-        checked={disabled5}
-        onChange={(e) => setDisabled5(e.target.checked)}
+	  onChange={(e) => actionCheckbox(e)}
       >
         коричневый
       </Checkbox>
