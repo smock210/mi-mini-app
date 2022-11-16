@@ -5,6 +5,9 @@ export let infoMethod = [
   {
     "title": "моей породы нет в списке"
   },
+  {
+    "title": "Хаски"
+  },
   
   {
     "title": "Алабай"
