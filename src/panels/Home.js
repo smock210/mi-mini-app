@@ -26,11 +26,17 @@ const Home = ({ id, go, fetchedUser }) => (
 				</Button>
 				
 			</Div>
+
 			<Div>
-				<Button stretched size="l" mode="secondary" onClick={go} data-to="persik">
-					Show me the Persik, please
+				<Button stretched size="l" mode="secondary" onClick={go} data-to="searchpetForm">
+					Сообщить о пропаже
 				</Button>
+				<Button stretched size="l" mode="secondary" onClick={go} data-to="nayden">
+					Сообщить о находке
+				</Button>
+				
 			</Div>
+			
 		</Group>
 	</Panel>
 );

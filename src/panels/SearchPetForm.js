@@ -1,6 +1,6 @@
 
 import bridge from '@vkontakte/vk-bridge';
-import { RadioGroup, Radio, Group, FormItem, Input, Checkbox, Select, CustomSelectOption, Div, Button, Header, Card, PanelHeader,View, Textarea} from '@vkontakte/vkui';
+import { RadioGroup, Radio, Group, FormItem, Input, Checkbox, Select, CustomSelectOption, Div, Button, Header, Card,PanelHeader, Link, CardGrid} from '@vkontakte/vkui';
 import React, { useEffect, useState, Image  } from "react";
 import { connect } from 'react-redux'
 import { infoMethod } from "../function/infoMethod"
@@ -175,7 +175,7 @@ function SearchPetForm({ router }) {
 
 				<Group>
 					<FormItem top="Сообщить о пропаже">
-						<FormItem top="Введите дату пропажи:" bottom={falseDogDate ? "" : "поле обязательно для заполнения"}>
+						<FormItem top="*Введите дату пропажи:" bottom={falseDogDate ? "" : "поле обязательно для заполнения"}>
 							<Input
 								type="date"
 								name='datePet'
@@ -189,7 +189,7 @@ function SearchPetForm({ router }) {
 						</FormItem>
 						<FormItem top="Выбирете пол пропавшей собаки:">
 							<RadioGroup>
-								<Radio name="polPropValG" value="m" onChange={(e) => actionRadio(e)} defaultChecked>
+								<Radio name="polPropValG" value="m" onChange={(e) => actionRadio(e)} >
 									Мальчик
 								</Radio>
 								<Radio name="polPropValG" value="g" onChange={(e) => actionRadio(e)}>
@@ -198,8 +198,9 @@ function SearchPetForm({ router }) {
 
 							</RadioGroup>
 						</FormItem>
+    
 						<Group>
-							<FormItem className='petFromItem' top="Выбирите Вашу породу из списка. Если ее не нашли в списке, выбирите 'моей породы нет в списке' и впишите ее руками в дополнительное поле
+							<FormItem className='petFromItem' top="*Выбирите Вашу породу из списка. Если ее не нашли в списке, выбирите 'моей породы нет в списке' и впишите ее руками в дополнительное поле
 		Если вы не знаете породу или у собаки ее нет, то выбирите 'не могу определить породу'"
 								bottom={falseDogName ? "" : "поле обязательно для заполнения"}>
 								<Select
@@ -227,9 +228,9 @@ function SearchPetForm({ router }) {
 										if (el === 'dogName') {
 											console.log(param[el])
 											if (param[el] === "моей породы нет в списке") {
-												console.log("start")
+												//console.log("start")
 												return (
-													<FormItem top="Введите наименование породы" >
+													<FormItem top="*Введите наименование породы" >
 														<Input
 															name='dogNameManual'
 															type='text'
@@ -319,40 +320,53 @@ function SearchPetForm({ router }) {
 
 											if (el.text.toUpperCase().includes(param["dogName"].toUpperCase())) {
 												//console.log(el.date.getFullYear()+'-'+(el.date.getMonth()+1)+'-'+el.date.getDate()+' '+el.date.getHours()+':'+el.date.getMinutes()+':'+el.date.getSeconds()+'.'+el.date.getMilliseconds())
-												console.log(new Date(el.date * 1000).toDateString())
-												console.log(Math.floor(new Date(param["datePet"]).getTime() / 1000))
+												//console.log(new Date(el.date * 1000).toDateString())
+												//console.log(Math.floor(new Date(param["datePet"]).getTime() / 1000))
 												if (el.date * 1 > Math.floor(new Date(param["datePet"]).getTime() / 1000)) {
 													return (
-														<FormItem className='petFromItem' key={el.id} top={el.text} >
-															<Div>
-																{el.copy_history[0].text}
+														<Group description={el.copy_history[0].text} key={el.id}>
+														<CardGrid size="s">
+															
+																
 
-																<Div>
+															
 																	{el.copy_history[0].attachments.map((fotoMap) =>{
 																		console.log( fotoMap.type)
 																		
 																		if (fotoMap.type ==="photo") {
+																			console.log(fotoMap.photo.album_id + "_" + fotoMap.photo.id)
 																			return (
 																				<>
-																				<p>otoMap.photo.sizes[2].url</p>
-																				<Image 
-																				source={{uri:fotoMap.photo.sizes[2].url}}
+																				<Card key={el.id  + "_" +  fotoMap.photo.id }>
+																				
+																				<div >
+																				<img src={fotoMap.photo.sizes[1].url}  />
+																				
+																				</div>
+																				
+																				
+																				
+																				
+																					</Card>
+																					</>
 
-																				/>
-																				console.log( fotoMap.photo.sizes[2].url)
-																				</>
+																					
+																				
 																			)
 																		}
 																	}
 																	)
 
 																	}
+																	
 
-																</Div>
-															</Div>
+																
+															
 
 
-														</FormItem>
+														</CardGrid>
+														<p><Link href={"https://vk.com/wall" + el.from_id +"_"+ el.id}>B исходное сообщение</Link></p>
+														</Group>
 													)
 												}
 											}
