@@ -326,10 +326,6 @@ function SearchPetForm({ router }) {
 													return (
 														<Group description={el.copy_history[0].text} key={el.id}>
 														<CardGrid size="s">
-															
-																
-
-															
 																	{el.copy_history[0].attachments.map((fotoMap) =>{
 																		console.log( fotoMap.type)
 																		
@@ -344,14 +340,9 @@ function SearchPetForm({ router }) {
 																				
 																				</div>
 																				
-																				
-																				
-																				
 																					</Card>
 																					</>
 
-																					
-																				
 																			)
 																		}
 																	}
